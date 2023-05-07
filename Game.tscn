@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://beegbs20ke7ga"]
+
+[ext_resource type="Script" path="res://Scripts/Core/GUI/GUIViewManager.gd" id="1_dsl4x"]
+[ext_resource type="PackedScene" uid="uid://cymd8wpq6but5" path="res://Assets/GUI/StartMenu/StartMenu.tscn" id="2_2bgc6"]
+[ext_resource type="Script" path="res://Scripts/Core/GUI/GUIViewConfig.gd" id="2_vgu6g"]
+[ext_resource type="Script" path="res://Scripts/Core/LaunchGame.gd" id="3_anqbf"]
+[ext_resource type="PackedScene" uid="uid://d0hm6eh33dtq3" path="res://Assets/GUI/SettingsMenu/SettingsMenu.tscn" id="4_qoya3"]
+
+[sub_resource type="Resource" id="Resource_ehrwb"]
+script = ExtResource("2_vgu6g")
+id = &"StartMenu"
+prefab = ExtResource("2_2bgc6")
+
+[sub_resource type="Resource" id="Resource_0fjli"]
+script = ExtResource("2_vgu6g")
+id = &"SettingsMenu"
+prefab = ExtResource("4_qoya3")
+
+[node name="Game" type="Node"]
+
+[node name="GUIViewManager" type="Node" parent="." node_paths=PackedStringArray("guiRoot")]
+unique_name_in_owner = true
+script = ExtResource("1_dsl4x")
+viewConfigList = Array[ExtResource("2_vgu6g")]([SubResource("Resource_ehrwb"), SubResource("Resource_0fjli")])
+guiRoot = NodePath("../GUIRoot")
+
+[node name="GUIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LaunchGame" type="Node" parent="."]
+script = ExtResource("3_anqbf")
